@@ -16,10 +16,20 @@ alias gcd="git checkout develop && git pull"
 alias gcm="git checkout master && git pull"
 alias gcnb="git checkout -b "
 
+### kubectl alias commands
+alias k="kubectl"
+alias kpods="kubectl get pods"
+alias kservices="kubectl get services"
+alias kdeploys="kubectl get deployments"
+alias knodes="kubectl get nodes"
+
+    ### interacting with ~/get_kubectl_admin_conf script
+    alias k8scon="~/bin/get_kubectl_admin_conf"
+
 ### Sops alias commands
 alias sopsijoj="sops --input-type json --output-type json"
 
-### Functions
+### Git Functions
 grom () {
 
     branch_name="$(git rev-parse --abbrev-ref HEAD)"
@@ -42,4 +52,9 @@ grod () {
     $(git checkout develop && git pull origin develop && git checkout ${branch_name} && git rebase -i develop)
 
     echo 'Done'
+}
+
+### kubectl functions
+k_filter () {
+    eval "$1 | grep $2"
 }
