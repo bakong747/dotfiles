@@ -1,3 +1,5 @@
+# .bashrc file for Echo
+
 ### Export variables
 export EDITOR="code --wait"
 export CHEF_KNIFE_SANDBOX_CONFIG='~/.chef/sandbox/knife-dev.rb'
