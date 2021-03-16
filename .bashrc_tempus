@@ -1,0 +1,57 @@
+# .bashrc file for Tempus
+
+# Miscellaneous
+export EDITOR="code --wait"
+
+### Export variables
+export EDITOR="code --wait"
+export JIRA_API_KEY="dzEAHG7VqaxMU9oL0E3cD396"
+
+### General aliases
+alias ppjson="python -m json.tool"
+alias cdproj="cd ~/Projects"
+
+### Git alias commands
+alias gs="git status"
+alias ga="git add ."
+alias gc="git commit -m"
+alias gcd="git checkout develop && git pull"
+alias gcm="git checkout master && git pull"
+alias gcnb="git checkout -b "
+
+### kubectl alias commands
+alias k="kubectl"
+alias kpods="kubectl get pods"
+alias kservices="kubectl get services"
+alias kdeploys="kubectl get deployments"
+alias knodes="kubectl get nodes"
+
+### Git Functions
+grom () {
+
+    branch_name="$(git rev-parse --abbrev-ref HEAD)"
+
+    echo "Current branch: ${branch_name}"
+    echo 'Executing git commands...'
+
+    $(git checkout master && git pull origin master && git checkout ${branch_name} && git rebase -i master)
+
+    echo 'Done'
+}
+
+grod () {
+
+    branch_name="$(git rev-parse --abbrev-ref HEAD)"
+
+    echo "Current branch: ${branch_name}"
+    echo 'Executing git commands...'
+
+    $(git checkout develop && git pull origin develop && git checkout ${branch_name} && git rebase -i develop)
+
+    echo 'Done'
+}
+
+### kubectl functions
+k_filter () {
+    eval "$1 | grep $2"
+}
